@@ -1,4 +1,8 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
 class Main{
     public static int[] arr;
     public static int[] tmp;
@@ -31,18 +35,27 @@ class Main{
         }
         System.out.println("end devide: "+st+", "+en);
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         //입력받기
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // 선언
+        int N = Integer.parseInt(br.readLine());
         arr = new int[N];
         tmp = new int[N];
         for (int i = 0; i < N; i++)
-            arr[i] = sc.nextInt();
-        sc.close();
+            arr[i] = Integer.parseInt(br.readLine());
+        br.close();
         mergeSort(0, N-1);
+
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));//선언
+
+        StringBuilder sb = new StringBuilder();
         
         for (int i = 0; i < N; i++)
-            System.out.println(arr[i]);
+        {
+            sb.append(arr[i]).append('\n');
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 }
